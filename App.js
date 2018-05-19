@@ -8,10 +8,10 @@ import {
   Text,
   TouchableHighlight,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet  
 } from "react-native";
-
-import Media from "./components/Qr";
+    
+import Media from "./components/Scanner/Qr";
 import { StackNavigator } from "react-navigation";
 import { Camera, Permissions } from "expo";
 class LogoTitle extends React.Component {

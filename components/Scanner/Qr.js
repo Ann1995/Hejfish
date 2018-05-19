@@ -1,26 +1,27 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import { Camera, Permissions } from "expo";
+import { Text, View, Button, TouchableOpacity, StyleSheet } from "react-native";
+import { BarCodeScanner, Camera, Permissions } from "expo";
 
 export default class Madia extends React.Component {
   state = {
-    hasCameraPermission: null,
-    type: Camera.Constants.Type.back
+    hasCameraPermission: null
   };
+
   static navigationOptions = ({ navigation, navigationOptions }) => {
     const { params } = navigation.state;
 
     return {
       title: params ? params.otherParam : "QR"
     };
-  };   
+  };
 
   async componentWillMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
+
     this.setState({ hasCameraPermission: status === "granted" });
   }
 
-  render() {  
+  render() {
     const { hasCameraPermission } = this.state;
     if (hasCameraPermission === null) {
       return <View />;
@@ -29,7 +30,15 @@ export default class Madia extends React.Component {
     } else {
       return (
         <View style={{ flex: 1 }}>
-          <Camera style={{ flex: 1 }} type={this.state.type}>
+          {/* <Camera            
+            style={{ flex: 1 }}
+            onBarcodeRead={({ data, type }) => {
+              alert("HEY");
+              alert(data);
+              alert(type);
+            }}
+            type={this.state.type}
+          >
             <View
               style={{
                 flex: 1,
@@ -51,17 +60,30 @@ export default class Madia extends React.Component {
                         : Camera.Constants.Type.back
                   });
                 }}
-              >
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: "white" }}
-                >
-                  Flip
-                </Text>
-              </TouchableOpacity>
+              />
             </View>
-          </Camera>
+            <Button title="take a photo" style={styles.button} />
+          </Camera> */}
+          <BarCodeScanner
+            onBarCodeRead={this._handleBarCodeRead}
+            style={StyleSheet.absoluteFill}
+          />
         </View>
       );
     }
   }
+  _handleBarCodeRead = ({ type, data }) => {
+    alert(type);
+    alert(data);                
+  };
 }
+const styles = StyleSheet.create({
+  button: {
+    position: "absolute",
+    backgroundColor: "#1ebccf",
+    borderRadius: 5,
+    padding: 20,
+    alignItems: "center",
+    marginBottom: 20
+  }
+});
