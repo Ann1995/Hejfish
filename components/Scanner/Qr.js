@@ -26,44 +26,10 @@ export default class Madia extends React.Component {
     if (hasCameraPermission === null) {
       return <View />;
     } else if (hasCameraPermission === false) {
-      return <Text>No access to camera</Text>;
+      return <Text> No access to camera </Text>;
     } else {
       return (
         <View style={{ flex: 1 }}>
-          {/* <Camera            
-            style={{ flex: 1 }}
-            onBarcodeRead={({ data, type }) => {
-              alert("HEY");
-              alert(data);
-              alert(type);
-            }}
-            type={this.state.type}
-          >
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: "transparent",
-                flexDirection: "row"
-              }}
-            >
-              <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignSelf: "flex-end",
-                  alignItems: "center"
-                }}
-                onPress={() => {
-                  this.setState({
-                    type:
-                      this.state.type === Camera.Constants.Type.back
-                        ? Camera.Constants.Type.front
-                        : Camera.Constants.Type.back
-                  });
-                }}
-              />
-            </View>
-            <Button title="take a photo" style={styles.button} />
-          </Camera> */}
           <BarCodeScanner
             onBarCodeRead={this._handleBarCodeRead}
             style={StyleSheet.absoluteFill}
@@ -74,7 +40,7 @@ export default class Madia extends React.Component {
   }
   _handleBarCodeRead = ({ type, data }) => {
     alert(type);
-    alert(data);                
+    alert(data);
   };
 }
 const styles = StyleSheet.create({

@@ -8,14 +8,15 @@ import {
   Text,
   TouchableHighlight,
   TouchableOpacity,
-  StyleSheet  
+  StyleSheet
 } from "react-native";
-    
+
 import Media from "./components/Scanner/Qr";
+import Searchblock from "./components/Search/Search";
 import { StackNavigator } from "react-navigation";
 import { Camera, Permissions } from "expo";
 class LogoTitle extends React.Component {
-  render() {
+  render() {     
     return (
       <View style={{}}>
         <Text
@@ -158,8 +159,8 @@ class ManualScreen extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ fontSize: 30 }}> This is a Manual! </Text>
+      <View style={{ marginHorizontal: 10, marginVertical: 30 }}>
+        <Searchblock />        
       </View>
     );
   }
@@ -167,12 +168,12 @@ class ManualScreen extends React.Component {
 class ModalScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center",backgroundColor:"#ffffff" }}>
         <Text style={{ fontSize: 30 }}> This is a modal! </Text>
         <Button
           onPress={() => this.props.navigation.goBack()}
-          title="Dismiss"
-        />
+          title="Dismiss"   
+        />   
       </View>
     );
   }
