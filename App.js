@@ -13,10 +13,11 @@ import {
 
 import Media from "./components/Scanner/Qr";
 import Searchblock from "./components/Search/Search";
+
 import { StackNavigator } from "react-navigation";
 import { Camera, Permissions } from "expo";
 class LogoTitle extends React.Component {
-  render() {     
+  render() {
     return (
       <View style={{}}>
         <Text
@@ -119,10 +120,10 @@ class KontrolleScreen extends React.Component {
           style={styles.button}
           onPress={() => {
             /* Navigate */
-            this.props.navigation.navigate("Manual", {
-              otherParam: "Manual"
+            this.props.navigation.navigate("Suche", {
+              otherParam: "Suche"
             });
-          }}
+          }}    
         >
           <Text
             style={{
@@ -149,7 +150,7 @@ class ScanScreen extends React.Component {
     return <Media />;
   }
 }
-class ManualScreen extends React.Component {
+class SucheScreen extends React.Component {
   static navigationOptions = ({ navigation, navigationOptions }) => {
     const { params } = navigation.state;
     return {
@@ -157,23 +158,26 @@ class ManualScreen extends React.Component {
     };
   };
 
-  render() {
-    return (
-      <View style={{ marginHorizontal: 10, marginVertical: 30 }}>
-        <Searchblock />        
-      </View>
-    );
+  render() {  
+    return <Searchblock />;
   }
 }
 class ModalScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center",backgroundColor:"#ffffff" }}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#ffffff"
+        }}
+      >
         <Text style={{ fontSize: 30 }}> This is a modal! </Text>
         <Button
           onPress={() => this.props.navigation.goBack()}
-          title="Dismiss"   
-        />   
+          title="Dismiss"
+        />
       </View>
     );
   }
@@ -190,8 +194,8 @@ const MainStack = StackNavigator(
     Scan: {
       screen: ScanScreen
     },
-    Manual: {
-      screen: ManualScreen
+    Suche: {
+      screen: SucheScreen
     }
   },
   {

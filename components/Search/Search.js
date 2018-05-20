@@ -1,94 +1,68 @@
-import React, { Component } from "react";
-import { AppRegistry, TextInput, View, StyleSheet, Text } from "react-native";
-class Item extends Component {
-  render() {
-    return (
-      <View style={styles.blockwrapper}>      
-        <Text style={styles.number}>{this.props.number}</Text>
-        <Text style={styles.info}>{this.props.name}</Text>
-        <Text style={styles.info}>{this.props.ticket}</Text>
-        <Text style={styles.info}>{this.props.date}</Text>
-      </View> 
-    );
-  }
-}  
+/**
+ * react-native-search-filter Sample App
+ */
+
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import SearchInput, { createFilter } from 'react-native-search-filter';
+import items from './store';
+const KEYS_TO_FILTERS = ['number', 'name'];
+
 export default class Searchblock extends Component {
-  constructor(props) {
+ constructor(props) {     
     super(props);
-    this.state = { text: "Nummer od Name" };
-  }   
-  render() {   
+    this.state = {
+      searchTerm: ''  
+    }    
+  }
+  searchUpdated(term) {
+    this.setState({ searchTerm: term })
+  }
+  render() {
+    const filteredItem = items.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     return (
-      <View>
-        <TextInput
-          style={styles.search}
-          onChangeText={text => this.setState({ text })}
-          value={this.state.text}
-        />
-        <View style={{ alignItems: "center" }}>
-          <Item
-            number="BA-18-00001"
-            name="Max Mustermann"
-            ticket="Tageskarte-Gr.Muhl"
-            date="25.08.2018-26.08.2018"
+      <View style={styles.container}>
+        <SearchInput 
+          onChangeText={(term) => { this.searchUpdated(term) }} 
+          style={styles.searchInput}
+          placeholder="Nummer od Name"
           />
-          <Item
-            number="B5-18-00001"
-            name="Denn Mustermann"
-            ticket="Tageskarte-Gr.Muhl"
-            date="25.08.2018-26.08.2018"
-          />
-          <Item
-            number="B6-18-00001"
-            name="Kirill Mustermann"
-            ticket="Tageskarte-Gr.Muhl"
-            date="25.08.2018-26.08.2018"
-          />
-          <Item
-            number="B7-18-00001"
-            name="Vova Mustermann"
-            ticket="Tageskarte-Gr.Muhl"
-            date="25.08.2018-26.08.2018"
-          />
-          <Item
-            number="B8-18-00001"
-            name="Oleg Mustermann"
-            ticket="Tageskarte-Gr.Muhl"
-            date="25.08.2018-26.08.2018"
-          />
-        </View>
+        <ScrollView>
+          {filteredItem.map(item => {     
+            return (
+              <TouchableOpacity onPress={()=>alert(item.number)} key={item.id} style={styles.itemItem}>
+                <View>
+                  <Text>{item.number}</Text>
+                  <Text>{item.name}</Text>
+                  <Text>{item.resevoirs}</Text>  
+                  <Text style={styles.itemSubject}>{item.date}</Text>
+                </View>
+              </TouchableOpacity>
+            )
+          })}
+        </ScrollView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  search: {
-    backgroundColor: "#ffffff",
-    borderRadius: 5,
-    padding: 40,
-    textAlign: "center",
-    marginBottom: 20,
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: "#d6d7da",
-    fontWeight: "bold",
-    fontSize: 24,
-    shadowOpacity: 0.75,
-    shadowRadius: 5,
-    shadowColor: "rgb(200, 200, 200)",
-    shadowOffset: { height: 0, width: 0 }
-  },
-  blockwrapper: {
-    borderRadius: 5,
-    backgroundColor: "rgb(235, 235, 235)",
+  container: {
     flex: 1,
-    flexDirection: "column"
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start'
   },
-  info: {
-    color: "rgb(48, 54, 58)"
+  itemItem:{
+    borderBottomWidth: 0.5,
+    borderColor: 'rgba(0,0,0,0.3)',
+    padding: 10
   },
-  number: {
-    fontWeight: "bold"
+  itemSubject: {
+    color: 'rgba(0,0,0,0.5)'
+  },
+  searchInput:{
+    padding: 10,
+    borderColor: '#CCC',
+    borderWidth: 1
   }
 });
