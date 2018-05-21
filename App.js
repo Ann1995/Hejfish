@@ -10,10 +10,10 @@ import {
   TouchableOpacity,
   StyleSheet
 } from "react-native";
-
 import Media from "./components/Scanner/Qr";
-import Searchblock from "./components/Search/Search";
-
+import SucheScreen from "./components/Search/Search";
+import InspectionScreen from "./components/Inspection/Inspection";
+import EndInspectionScreen from "./components/EndInspection/EndInspection"
 import { StackNavigator } from "react-navigation";
 import { Camera, Permissions } from "expo";
 class LogoTitle extends React.Component {
@@ -123,7 +123,7 @@ class KontrolleScreen extends React.Component {
             this.props.navigation.navigate("Suche", {
               otherParam: "Suche"
             });
-          }}    
+          }}
         >
           <Text
             style={{
@@ -150,18 +150,7 @@ class ScanScreen extends React.Component {
     return <Media />;
   }
 }
-class SucheScreen extends React.Component {
-  static navigationOptions = ({ navigation, navigationOptions }) => {
-    const { params } = navigation.state;
-    return {
-      title: params ? params.otherParam : "Manuelle Kontrolle"
-    };
-  };
 
-  render() {  
-    return <Searchblock />;
-  }
-}
 class ModalScreen extends React.Component {
   render() {
     return (
@@ -170,14 +159,53 @@ class ModalScreen extends React.Component {
           flex: 1,
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#ffffff"
+          backgroundColor: "rgb(48, 54, 58);"
         }}
       >
-        <Text style={{ fontSize: 30 }}> This is a modal! </Text>
+        <Text style={{ fontSize: 30 }}>Menu </Text>
         <Button
           onPress={() => this.props.navigation.goBack()}
           title="Dismiss"
         />
+        <TouchableOpacity
+          //style={styles.button}
+          onPress={() => {
+            /* Navigate */
+            this.props.navigation.navigate("Suche", {
+              otherParam: "Suche"
+            });
+          }}
+        >
+          <Text
+            style={{
+              color: "#ffffff",
+              fontWeight: "bold",
+              fontSize: 30
+            }}
+          >
+            Meine Kontrollen
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          //  style={styles.button}
+          onPress={() => {
+            /* Navigate */
+            this.props.navigation.navigate("Suche", {
+              otherParam: "Suche"
+            });
+          }}
+        >
+          <Text
+            style={{
+              color: "#ffffff",
+              fontWeight: "bold",
+              fontSize: 30
+            }}
+          >
+            Kontrolle eintragen
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -196,6 +224,12 @@ const MainStack = StackNavigator(
     },
     Suche: {
       screen: SucheScreen
+    },
+    Inspection: {
+      screen: InspectionScreen
+    },
+    EndInspection: {
+      screen: EndInspectionScreen
     }
   },
   {
