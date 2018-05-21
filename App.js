@@ -14,6 +14,7 @@ import Media from "./components/Scanner/Qr";
 import SucheScreen from "./components/Search/Search";
 import InspectionScreen from "./components/Inspection/Inspection";
 import EndInspectionScreen from "./components/EndInspection/EndInspection"
+import ThanksScreen from "./components/Thanks/Thanks"
 import { StackNavigator } from "react-navigation";
 import { Camera, Permissions } from "expo";
 class LogoTitle extends React.Component {
@@ -230,6 +231,9 @@ const MainStack = StackNavigator(
     },
     EndInspection: {
       screen: EndInspectionScreen
+    },
+    Thanks:{
+      screen:ThanksScreen
     }
   },
   {

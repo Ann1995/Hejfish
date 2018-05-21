@@ -53,7 +53,7 @@ export default class SucheScreen extends React.Component {
                 //onPress={()=>alert(item.number)}
                 onPress={() => {
                   this.props.navigation.navigate("Inspection", {
-                    otherParam: item
+                    otherParam:"Kontrolle" 
                   });
                 }}
                 key={item.id}

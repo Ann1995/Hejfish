@@ -12,14 +12,27 @@ export default class InspectionScreen extends Component {
     super(props);
     this.state = {
       text: "Komment",
-      buttonColor: "rgb(237, 47, 67)"
+      buttonColor: "rgb(237, 47, 67)",
+      disabled: true
     };
   }
+  static navigationOptions = ({ navigation, navigationOptions }) => {
+    const { params } = navigation.state;
+    return {
+      title: params ? params.otherParam : "Kontrolle"
+    };
+  };
   onButtonPress = () => {
-    this.setState({ buttonColor: "#ccc" });
+    this.setState({
+      buttonColor: "#ccc",
+      disabled: false
+    });
   };
   onButtonPressSecond = () => {
-    this.setState({ buttonColor: "rgb(237, 47, 67)" });
+    this.setState({
+      buttonColor: "rgb(237, 47, 67)",
+      disabled: false
+    });
   };
   render() {
     const { params } = this.props.navigation.state;
@@ -56,12 +69,13 @@ export default class InspectionScreen extends Component {
         </View>
         <View style={{ marginVertical: 10 }}>
           <Button
+            disabled={this.state.disabled}     
             onPress={() => {
               this.props.navigation.navigate("EndInspection", {
                 otherParam: "EndInspection"
               });
             }}
-            title="Kontrolle Speichern" 
+            title="Kontrolle Speichern"
             color="rgb(30, 187, 207)"
           />
         </View>
@@ -69,13 +83,4 @@ export default class InspectionScreen extends Component {
     );
   }
 }
-const styles = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    backgroundColor: "#1ebccf",
-    borderRadius: 5,
-    padding: 40,
-    alignItems: "center",
-    marginBottom: 20
-  }
-});
+
