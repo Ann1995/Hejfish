@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, Button, TouchableOpacity, StyleSheet } from "react-native";
 import { BarCodeScanner, Camera, Permissions } from "expo";
 
-export default class Madia extends React.Component {
+export default class ScanScreen extends React.Component {
   state = {
     hasCameraPermission: null
   };
@@ -43,13 +43,4 @@ export default class Madia extends React.Component {
     alert(data);
   };
 }
-const styles = StyleSheet.create({
-  button: {
-    position: "absolute",
-    backgroundColor: "#1ebccf",
-    borderRadius: 5,
-    padding: 20,
-    alignItems: "center",
-    marginBottom: 20
-  }
-});
+

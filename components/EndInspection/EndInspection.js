@@ -21,18 +21,16 @@ export default class EndInspectionScreen extends Component {
     const otherParam = params ? params.otherParam : null;
     return (
       <View>
-        <ScrollView>
+        <ScrollView> 
           {Items.map(item => {
             return (
               <TouchableOpacity
-                //onPress={()=>alert(item.number)}
                 onPress={() => {
                   this.props.navigation.navigate("Thanks", {
                     otherParam: "Danke"
                   });
-                }}  
+                }}
                 key={item.id}
-                //  style={styles.itemItem}
               >
                 <View>
                   <Text>{item.resevoirs}</Text>
