@@ -14,17 +14,25 @@ const reservoirs = [
   { id: 3, resevoirs: "Tageskate - Gr.Muhl" }
 ];
 export default class EndInspectionScreen extends Component {
+  static navigationOptions = ({ navigation, navigationOptions }) => {
+    const { params } = navigation.state;
+    return {
+      title: params ? params.otherParam : "Gewasser"
+    };  
+  };
   render() {
     const Items = reservoirs;
     const { params } = this.props.navigation.state;
     const itemId = params ? params.itemId : null;
     const otherParam = params ? params.otherParam : null;
+
     return (
-      <View>
-        <ScrollView> 
+      <View style={{ backgroundColor: "#fff", flex:1 }}>  
+        <ScrollView>
           {Items.map(item => {
             return (
               <TouchableOpacity
+                style={{ backgroundColor: "rgb(235, 235, 235)", margin: 20, paddingVertical:40 ,borderRadius:5}}
                 onPress={() => {
                   this.props.navigation.navigate("Thanks", {
                     otherParam: "Danke"
@@ -33,7 +41,7 @@ export default class EndInspectionScreen extends Component {
                 key={item.id}
               >
                 <View>
-                  <Text>{item.resevoirs}</Text>
+                  <Text style={{color:"rgb(114, 118, 120)",fontSize:27}}>{item.resevoirs}</Text>
                 </View>
               </TouchableOpacity>
             );

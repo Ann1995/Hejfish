@@ -8,23 +8,28 @@ import {
   TouchableOpacity,
   StyleSheet
 } from "react-native";
-
+import { Icon } from "react-native-elements";
 export default class ModalScreen extends React.Component {
   render() {
     return (
       <View
         style={{
           flex: 1,
+          width: "90%",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "rgb(48, 54, 58);"
-        }}
+          backgroundColor: "rgb(48, 54, 58);",
+          marginTop:20
+        }}  
       >
-        <Text style={{ fontSize: 30 }}> Menu </Text>
-        <Button
+       
+        <Icon name="user-circle" type="font-awesome" color="#fff" />
+        <Text style={{ color: "white" }}>Max Musterkontrolleur</Text>
+        <Button 
           onPress={() => this.props.navigation.goBack()}
-          title="Dismiss"
-        />
+          title="Ausloggen"
+          color="rgb(30, 187, 207)"
+        />  
         <TouchableOpacity
           onPress={() => {
             /* Navigate */

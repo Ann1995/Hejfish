@@ -56,7 +56,8 @@ export default class HomeScreen extends React.Component {
             style={{
               color: "#ffffff",
               fontWeight: "bold",
-              fontSize: 30
+              fontSize: 30,
+              textAlign:"center"  
             }}
           >
             Kontrollgang starten

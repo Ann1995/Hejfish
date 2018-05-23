@@ -42,9 +42,11 @@ export default class InspectionScreen extends Component {
     return (
       <View style={{ marginHorizontal: 10, marginVertical: 30 }}>
         <View>
-          <Text>Kontroll-Code:4521</Text>
-          <Text>Angelkarte:BA-18-000001</Text>
-          <Text>Angler:Max Mustermann</Text>
+          <Text style={{ textAlign: "center",fontWeight:"bold",color:"black" }}>Kontroll - Code: 4521</Text>
+          <Text style={{ textAlign: "center",fontWeight:"bold",color:"gray" }}>
+            Angelkarte: BA - 18 - 000001
+          </Text>
+          <Text style={{ textAlign: "center",fontWeight:"bold",color:"gray" }}>Angler: Max Mustermann</Text>
         </View>
         <View style={{ marginVertical: 10 }}>
           <Button
@@ -69,7 +71,7 @@ export default class InspectionScreen extends Component {
         </View>
         <View style={{ marginVertical: 10 }}>
           <Button
-            disabled={this.state.disabled}     
+            disabled={this.state.disabled}
             onPress={() => {
               this.props.navigation.navigate("EndInspection", {
                 otherParam: "EndInspection"
@@ -83,4 +85,3 @@ export default class InspectionScreen extends Component {
     );
   }
 }
-

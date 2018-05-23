@@ -53,17 +53,23 @@ export default class SucheScreen extends React.Component {
                 //onPress={()=>alert(item.number)}
                 onPress={() => {
                   this.props.navigation.navigate("Inspection", {
-                    otherParam:"Kontrolle" 
+                    otherParam: "Kontrolle"
                   });
                 }}
                 key={item.id}
-                style={styles.itemItem}
+                style={{
+                  backgroundColor: "rgb(235, 235, 235)",
+                  margin: 20,
+                  paddingVertical: 10,
+                  paddingHorizontal:20,
+                  borderRadius: 5
+                }}         
               >
                 <View>
-                  <Text>{item.number}</Text>
+                  <Text style={styles.itemSubject}>{item.number}</Text>
                   <Text>{item.name}</Text>
                   <Text>{item.resevoirs}</Text>
-                  <Text style={styles.itemSubject}>{item.date}</Text>
+                  <Text >{item.date}</Text>
                 </View>
               </TouchableOpacity>
             );
@@ -80,13 +86,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     justifyContent: "flex-start"
   },
-  itemItem: {
-    borderBottomWidth: 0.5,
-    borderColor: "rgba(0,0,0,0.3)",
-    padding: 10
-  },
+
   itemSubject: {
-    color: "rgba(0,0,0,0.5)"
+    fontWeight:"bold"
   },
   searchInput: {
     padding: 10,

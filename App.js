@@ -9,63 +9,57 @@ import EndInspectionScreen from "./components/EndInspection/EndInspection";
 import ThanksScreen from "./components/Thanks/Thanks";
 import { StackNavigator } from "react-navigation";
 
-const MainStack = StackNavigator(
-  {
+const MainStack = StackNavigator({
     Home: {
-      screen: HomeScreen
+        screen: HomeScreen
     },
     Kontrolle: {
-      screen: KontrolleScreen
+        screen: KontrolleScreen
     },
     Scan: {
-      screen: ScanScreen
+        screen: ScanScreen
     },
     Suche: {
-      screen: SucheScreen
+        screen: SucheScreen
     },
     Inspection: {
-      screen: InspectionScreen
+        screen: InspectionScreen
     },
     EndInspection: {
-      screen: EndInspectionScreen
+        screen: EndInspectionScreen
     },
     Thanks: {
-      screen: ThanksScreen
+        screen: ThanksScreen
     }
-  },
-  {
+}, {
     initialRouteName: "Home",
     navigationOptions: {
-      headerStyle: {
-        backgroundColor: "#1ebccf"
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        fontWeight: "bold",
-        color: "#ffffff",
-        fontSize: 30
-      }
+        headerStyle: {
+            backgroundColor: "#1ebccf"
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#ffffff",
+            fontSize: 30
+        }
     }
-  }
-);
+});
 
-const RootStack = StackNavigator(
-  {
+const RootStack = StackNavigator({
     Main: {
-      screen: MainStack
+        screen: MainStack
     },
     MyModal: {
-      screen: ModalScreen
+        screen: ModalScreen
     }
-  },
-  {
+}, {
     mode: "modal",
     headerMode: "none"
-  }
-);
+});
 
 export default class App extends React.Component {
-  render() {
-    return <RootStack />;
-  }
+    render() {
+        return <RootStack / > ;
+    }
 }
